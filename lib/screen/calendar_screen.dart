@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 
-class CalendarScreen extends StatefulWidget {
-  const CalendarScreen({Key? key}) : super(key: key);
+class MyCalendarScreen extends StatefulWidget {
+  const MyCalendarScreen({Key? key}) : super(key: key);
 
   @override
-  State<CalendarScreen> createState() => _CalendarScreenState();
+  State<MyCalendarScreen> createState() => _MyCalendarScreenState();
 }
 
-class _CalendarScreenState extends State<CalendarScreen> {
+class _MyCalendarScreenState extends State<MyCalendarScreen> {
   final List<NeatCleanCalendarEvent> _eventList = [
     NeatCleanCalendarEvent('MultiDay Event A',
         startTime: DateTime(DateTime.now().year, DateTime.now().month,
