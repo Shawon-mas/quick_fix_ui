@@ -3,11 +3,14 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../utilities/assets.dart';
 import '../widget/app_bar.dart';
 import '../widget/text_widget.dart';
+import 'house_cleaning.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -28,18 +31,40 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: HexColor('#f7f7f7'),
          //   appBar: MyAppBar(),
             body: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                    Row(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextWidget(
+                            textColor: Colors.black87,
+                            value: "Special Offers",
+                            size: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          TextWidget(
+                            textColor: Colors.blueAccent.withOpacity(0.7),
+                            value: "See all",
+                            size: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.h,),
+                      buildSlider(),
+                      SizedBox(height: 10.h,),
+                      Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextWidget(
                           textColor: Colors.black87,
-                          value: "Special Offers",
+                          value: "Categories",
                           size: 16.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -52,48 +77,29 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     SizedBox(height: 10.h,),
-                    buildSlider(),
+                    buildCategories(),
                     SizedBox(height: 10.h,),
                     Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextWidget(
-                        textColor: Colors.black87,
-                        value: "Categories",
-                        size: 16.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      TextWidget(
-                        textColor: Colors.blueAccent.withOpacity(0.7),
-                        value: "See all",
-                        size: 16.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10.h,),
-                  buildCategories(),
-                  SizedBox(height: 10.h,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextWidget(
-                        textColor: Colors.black87,
-                        value: "Most Popular",
-                        size: 16.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      TextWidget(
-                        textColor: Colors.blueAccent.withOpacity(0.7),
-                        value: "See all",
-                        size: 16.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10.h,),
-                  buildPopularSection(),
-                ],
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextWidget(
+                          textColor: Colors.black87,
+                          value: "Most Popular",
+                          size: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        TextWidget(
+                          textColor: Colors.blueAccent.withOpacity(0.7),
+                          value: "See all",
+                          size: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10.h,),
+                    buildPopularSection(),
+                  ],
+                ),
               ),
             ),
 
@@ -198,7 +204,11 @@ class _HomeScreenState extends State<HomeScreen> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          buildContainer( title: 'Cleaning',color: Colors.pink.withOpacity(0.3),icon:Assets.cleaning ),
+          InkWell(
+            onTap: (){
+              Get.to(()=>HouseCleaningScreen());
+            },
+              child: buildContainer( title: 'Cleaning',color: Colors.pink.withOpacity(0.3),icon:Assets.cleaning )),
           SizedBox(width: 10.w,),
           buildContainer( title: 'Repairing',color: Colors.blueGrey.shade200,icon:Assets.repairing),
           SizedBox(width: 10.w,),
