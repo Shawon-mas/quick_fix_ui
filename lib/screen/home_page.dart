@@ -9,6 +9,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../utilities/assets.dart';
 import '../widget/app_bar.dart';
+import '../widget/custom_button.dart';
 import '../widget/text_widget.dart';
 import 'house_cleaning.dart';
 class HomeScreen extends StatefulWidget {
@@ -143,11 +144,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
 
                                       children: [
-                                        TextWidget(
-                                          textColor: Colors.white,
-                                          value: "30%",
-                                          size: 40.sp,
-                                          fontWeight: FontWeight.bold,
+                                        Row(
+                                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            TextWidget(
+                                              textColor: Colors.white,
+                                              value: "30%",
+                                              size: 40.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            SizedBox(width: 100.w,),
+
+                                            CustomButton(
+                                              width: 120.w,
+                                              height: 35.h,
+                                              title: 'Explore Offer',
+                                              buttonColor: Colors.blueAccent,
+                                              textColor: Colors.white, onPressed: () {  },
+
+                                            )
+                                          ],
                                         ),
                                         TextWidget(
                                           textColor: Colors.white.withOpacity(0.7),
